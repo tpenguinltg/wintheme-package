@@ -68,7 +68,7 @@ list-packageable() {
 
 show-help() {
   cat <<EOF
-Package a Windows theme for posting on DeviantArt. 
+Repackage a Windows theme with branding and a preview image. 
 
 USAGE
     $0 [OPTIONS] -- "Theme name 1" ["Theme name 2" [...]]
@@ -79,7 +79,7 @@ OPTIONS
     -h
         Show this help message
     -f
-        Clean each package before building
+      Clean each package before building (f for force)
     -l
         List unpackaged themes. Packageable themes will have a * at the end of their names
     -u
