@@ -1,8 +1,8 @@
 #!/bin/bash
 
-PREVIEW_PATH="${PREVIEW_PATH:-previews}"
-RAW_PATH="${RAW_PATH:-raw}"
-BRANDING_FILE="$(realpath ${BRANDING_FILE:-tpenguinltg.png})"
+WINTHEME_PREVIEW_PATH="${WINTHEME_PREVIEW_PATH:-previews}"
+WINTHEME_RAW_PATH="${WINTHEME_RAW_PATH:-raw}"
+WINTHEME_BRANDING_FILE="$(realpath ${WINTHEME_BRANDING_FILE:-tpenguinltg.png})"
 
 CLEAN_BEFORE_PACKAGING=1
 
@@ -125,9 +125,9 @@ shift $((OPTIND -1))
 
 for theme in "$@"; do
 
-  if [ -f "$RAW_PATH/$theme.themepack" ]; then
+  if [ -f "$WINTHEME_RAW_PATH/$theme.themepack" ]; then
     themepack_ext="themepack"
-  elif [ -f "$RAW_PATH/$theme.deskthemepack" ]; then
+  elif [ -f "$WINTHEME_RAW_PATH/$theme.deskthemepack" ]; then
     themepack_ext="deskthemepack"
   else
       echo "ERROR: themepack missing!" >&2
@@ -137,7 +137,7 @@ for theme in "$@"; do
   fi
 
   # Check for missing files
-  for f in {"$PREVIEW_PATH/$theme.png","$BRANDING_FILE"}; do
+  for f in {"$WINTHEME_PREVIEW_PATH/$theme.png","$WINTHEME_BRANDING_FILE"}; do
     if [ ! -f "$f" ]; then
       echo "ERROR: $f missing!" >&2
       echo Skipping $theme.
@@ -179,8 +179,8 @@ for theme in "$@"; do
 
   # Apply branding
   echo Applying branding...
-  cp "$BRANDING_FILE" ./
-  sed -i 's/\[Theme\]/[Theme]\nBrandImage='"$(basename "$BRANDING_FILE")"'/' "$theme.theme"
+  cp "$WINTHEME_BRANDING_FILE" ./
+  sed -i 's/\[Theme\]/[Theme]\nBrandImage='"$(basename "$WINTHEME_BRANDING_FILE")"'/' "$theme.theme"
 
   # Repackage themepack
   echo Repackaging themepack...
@@ -190,8 +190,8 @@ for theme in "$@"; do
   echo Making ZIP package...
   popd > /dev/null
   mkdir "$theme"
-  cp "$RAW_PATH/$theme/$theme.$themepack_ext" "$theme/"
-  cp "$PREVIEW_PATH/$theme.png" "$theme/preview.png"
+  cp "$WINTHEME_RAW_PATH/$theme/$theme.$themepack_ext" "$theme/"
+  cp "$WINTHEME_PREVIEW_PATH/$theme.png" "$theme/preview.png"
   test "$ADDITIONAL_PACKAGE_FILES" && cp -r $ADDITIONAL_PACKAGE_FILES "$theme/"
   zip -r "$theme.zip" "$theme"
 
