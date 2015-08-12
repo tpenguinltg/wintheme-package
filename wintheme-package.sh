@@ -4,7 +4,7 @@ WINTHEME_PREVIEW_PATH="${WINTHEME_PREVIEW_PATH:-previews}"
 WINTHEME_RAW_PATH="${WINTHEME_RAW_PATH:-raw}"
 WINTHEME_BRANDING_FILE="$(realpath ${WINTHEME_BRANDING_FILE:-tpenguinltg.png})"
 
-CLEAN_BEFORE_PACKAGING=1
+WINTHEME_CLEAN_BEFORE_PACKAGING=${WINTHEME_CLEAN_BEFORE_PACKAGING:-0}
 
 # this script returns the number of packages that failed to be built
 failed_count=0
@@ -99,14 +99,14 @@ while getopts c:hflu opt; do
       show-help
       ;;
     f)
-      CLEAN_BEFORE_PACKAGING=0
+      WINTHEME_CLEAN_BEFORE_PACKAGING=1
       ;;
     l)
       list-unpackaged
       ;;
     u)
       while read theme; do
-        CLEAN_BEFORE_PACKAGING=$CLEAN_BEFORE_PACKAGING "$0" "$theme"
+        WINTHEME_CLEAN_BEFORE_PACKAGING=$WINTHEME_CLEAN_BEFORE_PACKAGING "$0" "$theme"
         failed_count=$((failed_count + $?))
       done < <(list-packageable)
       ;;
@@ -160,7 +160,7 @@ for theme in "$@"; do
   fi
 
   # Clean package if specified
-  if [ $CLEAN_BEFORE_PACKAGING -eq 0 ]; then
+  if [ $WINTHEME_CLEAN_BEFORE_PACKAGING -ne 0 ]; then
     echo "Cleaning existing $theme package..."
     clean-package
   fi
