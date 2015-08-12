@@ -68,7 +68,7 @@ list-packageable() {
 
 show-help() {
   cat <<EOF
-Repackage a Windows theme with branding and a preview image. 
+Repackage a Windows theme with branding and a preview image.
 
 USAGE
     $0 [OPTIONS] -- "Theme name 1" ["Theme name 2" [...]]
