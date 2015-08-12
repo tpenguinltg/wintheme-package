@@ -130,7 +130,7 @@ for theme in "$@"; do
   elif [ -f "$WINTHEME_RAW_PATH/$theme.deskthemepack" ]; then
     themepack_ext="deskthemepack"
   else
-      echo "ERROR: themepack missing!" >&2
+      echo "ERROR: themepack for \"$theme\" not found in \"$WINTHEME_RAW_PATH\"!" >&2
       echo Skipping $theme.
       ((failed_count++))
       continue
