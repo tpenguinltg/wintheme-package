@@ -26,11 +26,11 @@ clean-package() {
 }
 
 list-unpackaged() {
-  ziplist=`mktemp`
-  themepacklist=`mktemp`
-  unpackagedlist=`mktemp`
-  previewlist=`mktemp`
-  packageablelist=`mktemp`
+  ziplist=$(mktemp)
+  themepacklist=$(mktemp)
+  unpackagedlist=$(mktemp)
+  previewlist=$(mktemp)
+  packageablelist=$(mktemp)
 
 
   # list all packaged themes
