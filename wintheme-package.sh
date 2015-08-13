@@ -154,7 +154,7 @@ for theme in "$@"; do
   echo
 
   # prompt to overwrite if package already built
-  if [ -e "$theme.zip" ]; then
+  if [ -e "$theme.zip" ] && [ $WINTHEME_CLEAN_BEFORE_PACKAGING -eq 0 ]; then
     read -n1 -p "Package for $theme already built. Overwrite? [y/N] " overwrite
     echo
     if [ "$overwrite" != "y" ] && [ "$overwrite" != "Y" ]; then
