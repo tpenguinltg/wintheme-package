@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 WINTHEME_PREVIEW_PATH="${WINTHEME_PREVIEW_PATH:-previews}"
 WINTHEME_RAW_PATH="${WINTHEME_RAW_PATH:-raw}"
 WINTHEME_BRANDING_FILE="$(realpath ${WINTHEME_BRANDING_FILE:-branding.png})"
