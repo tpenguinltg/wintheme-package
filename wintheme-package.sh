@@ -166,7 +166,7 @@ for theme in "$@"; do
   # Clean package if specified
   if [ $WINTHEME_CLEAN_BEFORE_PACKAGING -ne 0 ]; then
     echo "Cleaning existing $theme package..."
-    clean-package
+    clean-package "$theme"
   fi
 
   # Extract themepack
@@ -184,7 +184,7 @@ for theme in "$@"; do
   # Apply branding
   echo Applying branding...
   cp "$WINTHEME_BRANDING_FILE" ./
-  sed -i 's/\[Theme\]/[Theme]\nBrandImage='"$(basename "$WINTHEME_BRANDING_FILE")"'/' "$theme.theme"
+  sed -i 's/\[Theme\]/[Theme]\r\nBrandImage='"$(basename "$WINTHEME_BRANDING_FILE")"'/' "$theme.theme"
 
   # Repackage themepack
   echo Repackaging themepack...
