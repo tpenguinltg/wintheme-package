@@ -83,7 +83,7 @@ OPTIONS
     -h
         Show this help message
     -f
-      Clean each package before building (f for force)
+        Clean each package before building (f for force)
     -l
         List unpackaged themes. Packageable themes will have a * at the end of their names
     -u
