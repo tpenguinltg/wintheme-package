@@ -179,7 +179,7 @@ for theme in "$@"; do
 
   # Extract colors
   echo Saving colors to \'$(realpath ../../../colors)/$theme.txt\'...
-  sed -n '/^\[Control Panel\\Colors\]/,/^\s*$/p' < "$theme.theme" | head -n-1 | tail -n+2 | sort > "../../../colors/$theme.txt"
+  sed -n '/^\[Control Panel\\Colors\]/,/^\s*$/p' < "$theme.theme" | head -n-1 | tail -n+2 | sed 's/\s*;.*$//;/^\s*$/d' | sort > "../../../colors/$theme.txt"
 
   # Apply branding
   echo Applying branding...
