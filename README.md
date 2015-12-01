@@ -57,6 +57,8 @@ For example, for a theme called "[Hotdog Stand](http://fav.me/d8oxku6)", the fol
 
 ## Options
 <dl>
+  <dt><code>-a</code></dt>
+  <dd>Package packageable themes (u for unpackaged).</dd>
   <dt><code>-c PACKAGE</code></dt>
   <dd>Clean package. Pass for each package to clean.</dd>
   <dt><code>-h</code></dt>
@@ -65,8 +67,6 @@ For example, for a theme called "[Hotdog Stand](http://fav.me/d8oxku6)", the fol
   <dd>Clean each package before building (f for force).</dd>
   <dt><code>-l</code></dt>
   <dd>List unpackaged themes. Packageable themes will have a \* at the end of their names.</dd>
-  <dt><code>-u</code></dt>
-  <dd>Package packageable themes (u for unpackaged).</dd>
   <dt><code>--</code></dt>
   <dd>Stop processing options.</dd>
 </dl>

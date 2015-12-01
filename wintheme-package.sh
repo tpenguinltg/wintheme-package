@@ -78,6 +78,8 @@ USAGE
     $0 [OPTIONS] -- "Theme name 1" ["Theme name 2" [...]]
 
 OPTIONS
+    -a
+        Package all packageable themes
     -c PACKAGE
         Clean package. Pass for each package to clean
     -h
@@ -86,8 +88,6 @@ OPTIONS
         Clean each package before building (f for force)
     -l
         List unpackaged themes. Packageable themes will have a * at the end of their names
-    -u
-        Package packageable themes (u for unpackaged)
     --
         Stop processing options
 EOF
@@ -96,6 +96,12 @@ EOF
 OPTIND=1
 while getopts c:hflu opt; do
   case $opt in
+    a|u) # -u (deprecated) for backwards compatibility.
+      while read theme; do
+        WINTHEME_CLEAN_BEFORE_PACKAGING=$WINTHEME_CLEAN_BEFORE_PACKAGING "$0" "$theme"
+        failed_count=$((failed_count + $?))
+      done < <(list-packageable)
+      ;;
     c)
       clean-package "$OPTARG"
       ;;
@@ -107,12 +113,6 @@ while getopts c:hflu opt; do
       ;;
     l)
       list-unpackaged
-      ;;
-    u)
-      while read theme; do
-        WINTHEME_CLEAN_BEFORE_PACKAGING=$WINTHEME_CLEAN_BEFORE_PACKAGING "$0" "$theme"
-        failed_count=$((failed_count + $?))
-      done < <(list-packageable)
       ;;
   esac
 done
