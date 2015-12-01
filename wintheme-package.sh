@@ -185,6 +185,8 @@ for theme in "$@"; do
   echo Applying branding...
   cp "$WINTHEME_BRANDING_FILE" ./
   sed -i 's/\[Theme\]/[Theme]\r\nBrandImage='"$(basename "$WINTHEME_BRANDING_FILE")"'/' "$theme.theme"
+  # Fix permissions
+  chmod 644 "$theme.theme"
 
   # Repackage themepack
   echo Repackaging themepack...
