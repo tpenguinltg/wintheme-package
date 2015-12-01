@@ -203,7 +203,7 @@ for theme in "$@"; do
 
   # Done
   echo
-  echo Theme package created.
+  echo "$theme" theme package created.
 
 done
 
