@@ -70,7 +70,7 @@ list-packageable() {
   list-unpackaged | grep '\*$' | sed 's/\*$//'
 }
 
-show-help() {
+show_help() {
   cat <<EOF
 Repackage a Windows theme with branding and a preview image.
 
@@ -106,7 +106,8 @@ while getopts c:hflu opt; do
       clean-package "$OPTARG"
       ;;
     h)
-      show-help
+      show_help
+      exit 0
       ;;
     f)
       WINTHEME_CLEAN_BEFORE_PACKAGING=1
