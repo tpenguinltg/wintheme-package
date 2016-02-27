@@ -182,8 +182,8 @@ for theme in "$@"; do
   # Rename .theme file to the full theme name
   mv "${theme:0:9}.theme" "$theme.theme" 2> /dev/null
 
-  # Make language-agnostic
-  echo Making theme language-agnostic...
+  # Make locale-agnostic
+  echo Making theme locale-agnostic...
   sed -i 's/^ColorStyle=Windows Classic\r$/ColorStyle=@themeui.dll,-854\r/;s/^Size=Normal\r$/Size=\@themeui.dll,-2019\r/' "$theme.theme"
   fix-permissions "$theme.theme"
 
