@@ -182,14 +182,14 @@ for theme in "$@"; do
   # Rename .theme file to the full theme name
   mv "${theme:0:9}.theme" "$theme.theme" 2> /dev/null
 
+  # Extract colors
+  echo Saving colors to \'$(realpath ../../../colors)/$theme.txt\'...
+  sed -n '/^\[Control Panel\\Colors\]/,/^[[:space:]]*$/p' < "$theme.theme" | head -n-1 | tail -n+2 | sed 's/\s*;.*$//;/^[[:space:]]*$/d' | sort > "../../../colors/$theme.txt"
+
   # Make locale-agnostic
   echo Making theme locale-agnostic...
   sed -i 's/^ColorStyle=Windows Classic\r$/ColorStyle=@themeui.dll,-854\r/;s/^Size=Normal\r$/Size=\@themeui.dll,-2019\r/' "$theme.theme"
   fix-permissions "$theme.theme"
-
-  # Extract colors
-  echo Saving colors to \'$(realpath ../../../colors)/$theme.txt\'...
-  sed -n '/^\[Control Panel\\Colors\]/,/^[[:space:]]*$/p' < "$theme.theme" | head -n-1 | tail -n+2 | sed 's/\s*;.*$//;/^[[:space:]]*$/d' | sort > "../../../colors/$theme.txt"
 
   # Apply branding
   echo Applying branding...
