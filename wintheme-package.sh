@@ -70,6 +70,10 @@ list-packageable() {
   list-unpackaged | grep '\*$' | sed 's/\*$//'
 }
 
+fix-permissions() {
+  chmod 644 "$1"
+}
+
 show_help() {
   cat <<EOF
 Repackage a Windows theme with branding and a preview image.
@@ -181,6 +185,7 @@ for theme in "$@"; do
   # Make language-agnostic
   echo Making theme language-agnostic...
   sed -i 's/^ColorStyle=Windows Classic\r$/ColorStyle=@themeui.dll,-854\r/;s/^Size=Normal\r$/Size=\@themeui.dll,-2019\r/' "$theme.theme"
+  fix-permissions "$theme.theme"
 
   # Extract colors
   echo Saving colors to \'$(realpath ../../../colors)/$theme.txt\'...
@@ -190,8 +195,7 @@ for theme in "$@"; do
   echo Applying branding...
   cp "$WINTHEME_BRANDING_FILE" ./
   sed -i 's/\[Theme\]/[Theme]\r\nBrandImage='"$(basename "$WINTHEME_BRANDING_FILE")"'/' "$theme.theme"
-  # Fix permissions
-  chmod 644 "$theme.theme"
+  fix-permissions "$theme.theme"
 
   # Repackage themepack
   echo Repackaging themepack...
