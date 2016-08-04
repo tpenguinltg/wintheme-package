@@ -98,7 +98,7 @@ EOF
 }
 
 OPTIND=1
-while getopts c:hflu opt; do
+while getopts ac:hflu opt; do
   case $opt in
     a|u) # -u (deprecated) for backwards compatibility.
       while read theme; do
